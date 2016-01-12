@@ -76,6 +76,21 @@ void test_indexOf(){
 	assert(1==result1);
 }
 
+void test_deleteElementAt(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	int * result2 = getElementAt(list,2);
+	assert(8==*result2);
+	int * result = deleteElementAt(&list,2);
+	assert(7==*result);
+	int * result1 = getElementAt(list,2);
+	assert(7==*result1);
+}
+
 
 
 

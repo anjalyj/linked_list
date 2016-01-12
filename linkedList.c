@@ -13,7 +13,7 @@ LinkedList createList(void){
 
 int add_to_list(LinkedList *list,void *data){
 	Element *ele = (Element *)malloc(sizeof(Element));
-	 ele->value=data;
+	ele->value=data;
 	ele->next=NULL;
 	if(list->length==0){
 		list->tail=list->head=ele;
@@ -64,5 +64,18 @@ int indexOf(LinkedList list, void *value){
 		count++;
 	}
 	return -1;
+}
+
+void * deleteElementAt(LinkedList *list, int index){
+	Element *ele = list->head;
+	Element *preEle,*next;
+	int *num = getElementAt(*list,index);
+	while(ele->value!=num){
+		preEle = ele;
+		ele = ele->next;
+	}
+	preEle->next = ele->next;
+	next=preEle->next;
+	return next->value;
 }
 
