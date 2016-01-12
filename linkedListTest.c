@@ -15,6 +15,44 @@ void test_add_to_list(){
 	assert(1==result);
 }
 
+void test_get_first_element(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	int * result = get_first_element(list);
+	assert(10==*result);
+}
+
+void test_get_last_element(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	int * result = get_last_element(list);
+	assert(8==*result);
+}
+
+void increment(void *ele){
+	(*(int *)ele) += 1;
+}
+
+void test_forEach(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	forEach(list,&increment);
+	assert(11==*(int *)list.head->value);
+	assert(9==*(int *)list.tail->value);
+
+}
+
+
+
 
 
 
