@@ -61,9 +61,20 @@ void test_getElementAt(){
 	assert(9==*result);
 	int * result1 = getElementAt(list,3);
 	assert(7==*result1);
-
 }
 
+void test_indexOf(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	int result = indexOf(list,&num2);
+	assert(2==result);
+	int result1 = indexOf(list,&num1);
+	assert(1==result1);
+}
 
 
 

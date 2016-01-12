@@ -53,3 +53,16 @@ void * getElementAt(LinkedList list, int index){
 	}
 	return NULL;
 }
+
+int indexOf(LinkedList list, void *value){
+	int count = 0;
+	Element *ele = list.head;
+	while(ele!=NULL){
+		if(ele->value==value)
+			return count;
+		ele= ele->next;
+		count++;
+	}
+	return -1;
+}
+
