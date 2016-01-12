@@ -22,4 +22,7 @@ typedef void (*ElementProcessor)(void *);
 
 void forEach(LinkedList, ElementProcessor e);
 
+void * getElementAt(LinkedList, int );
+
+
 

@@ -48,6 +48,19 @@ void test_forEach(){
 	forEach(list,&increment);
 	assert(11==*(int *)list.head->value);
 	assert(9==*(int *)list.tail->value);
+}
+
+void test_getElementAt(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	int * result = getElementAt(list,1);
+	assert(9==*result);
+	int * result1 = getElementAt(list,3);
+	assert(7==*result1);
 
 }
 
