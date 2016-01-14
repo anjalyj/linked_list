@@ -76,6 +76,19 @@ void test_indexOf(){
 	assert(1==result1);
 }
 
+void test_deleteElementAt_beg(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	assert(10==*(int *)list.head->value);
+	int result = *(int *)deleteElementAt(&list,0);
+	assert(10==result);
+	assert(9==*(int *)list.head->value);
+}
+
 void test_deleteElementAt(){
 	LinkedList list = createList();
 	int num = 10,num1 = 9,num2 = 8,num3 = 7;
@@ -83,13 +96,85 @@ void test_deleteElementAt(){
 	add_to_list(&list,&num1);
 	add_to_list(&list,&num2);
 	add_to_list(&list,&num3);
-	int * result2 = getElementAt(list,2);
+	int * result1 = getElementAt(list,1);
+	assert(9==*result1);
+	int result = *(int *)deleteElementAt(&list,1);
+	assert(9==result);
+	int * result2 = getElementAt(list,1);
 	assert(8==*result2);
-	int * result = deleteElementAt(&list,2);
-	assert(7==*result);
-	int * result1 = getElementAt(list,2);
-	assert(7==*result1);
+	int * result6 = getElementAt(list,1);
+	assert(8==*result6);
 }
+
+void test_deleteElementAt_end(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	assert(7==*(int *)list.tail->value);
+	int result = *(int *)deleteElementAt(&list,3);
+	assert(7==result);
+	assert(8==*(int *)list.tail->value);
+}
+
+void test_asArray(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	int arr[] = {10,9,8,7};
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	void *array =calloc(4,5);
+	int result = asArray(list,array,5);
+	assert(4==result);
+	for(int i=0;i<result;i++){
+		assert(arr[i]==**(int **)array);
+		array+=8;
+	}
+}
+
+void test_filter_isEven(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	LinkedList result = filter(list,isEven,NULL);
+	assert(2 == result.length);
+	assert(10==*(int *)result.head->value);
+	assert(8==*(int *)result.tail->value);
+}
+
+void test_filter_isDivisible(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	int number = 3;
+	LinkedList result = filter(list,isDivisible,&number);
+	assert(1 == result.length);
+	assert(9==*(int *)result.head->value);
+	assert(9==*(int *)result.tail->value);
+}
+
+void test_reverse(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	LinkedList result = reverse(list);
+	assert(7==*(int *)result.head->value);
+	assert(10==*(int *)result.tail->value);
+}
+
 
 
 

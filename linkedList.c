@@ -67,15 +67,82 @@ int indexOf(LinkedList list, void *value){
 }
 
 void * deleteElementAt(LinkedList *list, int index){
-	Element *ele = list->head;
-	Element *preEle,*next;
+	void * value;
+	Element *ele = list->head,*preEle;
+	if(index >= list->length || index < 0) return NULL;
+	else if(index == 0){
+		value = ele->value;
+		preEle = ele->next;
+		list->head = preEle;
+		free(ele);
+		return value;
+	}
 	int *num = getElementAt(*list,index);
 	while(ele->value!=num){
 		preEle = ele;
 		ele = ele->next;
 	}
-	preEle->next = ele->next;
-	next=preEle->next;
-	return next->value;
+	if(ele->next==NULL){
+		value = ele->value; 
+		preEle->next = NULL;
+		list->tail=preEle;
+		free(ele);
+		return value;
+	}
+	else{
+		value = ele->value; 
+		preEle->next = ele->next;
+		free(ele);
+		return value;
+	}
 }
+
+
+int asArray(LinkedList list, void ** array, int maxElements){
+	int count = 0; 
+	Element *ele = list.head;
+	int length = maxElements > list.length ? list.length : maxElements;
+	for(int i=0;i<length;i++){
+		array[i]=ele->value;
+		count++;
+		ele = ele->next;
+	}
+	return count;
+}
+
+int isEven(void* hint, void* item){
+	return (*(int *)item %2 == 0);
+}
+
+int isDivisible(void* hint, void* item){
+	int num = *(int *)item;
+	int  diviser = *(int *)hint;
+	return num % diviser == 0;
+}
+
+LinkedList  filter(LinkedList list, MatchFunc match, void * hint){
+	Element *ele = list.head;
+	LinkedList new_list = createList();
+	while(ele != NULL){
+		if(match(hint,ele->value))
+			add_to_list(&new_list,ele->value);
+		ele= ele->next;
+	}
+	return new_list;
+}
+
+LinkedList reverse(LinkedList list){
+	int length = list.length;
+	LinkedList new_list = createList();
+	int *value;
+	for(int i=length-1;i>=0;i--){
+		value = getElementAt(list,i);
+		add_to_list(&new_list,value);
+	}
+	return new_list;
+}
+
+
+
+
 

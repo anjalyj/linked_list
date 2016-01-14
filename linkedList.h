@@ -28,6 +28,19 @@ int indexOf(LinkedList, void *);
 
 void * deleteElementAt(LinkedList *, int);
 
+int asArray(LinkedList, void **, int maxElements);
+
+typedef int MatchFunc (void *, void *);
+
+int isEven(void* hint, void* item);
+
+int isDivisible(void* hint, void* item);
+
+LinkedList  filter(LinkedList, MatchFunc, void * );
+
+LinkedList reverse(LinkedList);
+
+
 
 
 
