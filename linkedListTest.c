@@ -175,6 +175,33 @@ void test_reverse(){
 	assert(10==*(int *)result.tail->value);
 }
 
+void test_map(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	int number = 3;
+	LinkedList result = map(list,increment1,&number);
+	assert(4==result.length);
+	assert(13==*(int *)result.head->value);
+	assert(10==*(int *)result.tail->value);
+}
+
+void test_reduce(){
+	LinkedList list = createList();
+	int num = 10,num1 = 9,num2 = 8,num3 = 7;
+	add_to_list(&list,&num);
+	add_to_list(&list,&num1);
+	add_to_list(&list,&num2);
+	add_to_list(&list,&num3);
+	int hint = 0;
+	int initial_value = 0;
+	int result = *(int *)reduce(list,sum,&hint,&initial_value);
+	assert(34==result);
+}
+
 
 
 

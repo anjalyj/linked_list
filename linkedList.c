@@ -142,6 +142,38 @@ LinkedList reverse(LinkedList list){
 	return new_list;
 }
 
+void increment1(void* hint, void* sourceItem, void* destinationItem){
+	*(int *)destinationItem = *(int *)sourceItem + *(int *)hint;
+}
+
+LinkedList map(LinkedList list, ConvertFunc convert, void * hint){
+	LinkedList new_list = createList();
+	Element *ele = list.head;
+	for(int i=0;i<list.length;i++){
+		void *new_ele = malloc(sizeof(void ()));
+		convert(hint,ele->value,new_ele);
+		add_to_list(&new_list,new_ele);
+		ele = ele->next;
+
+	}
+	return new_list;
+}
+
+void *sum(void* hint, void* previousItem, void* item){
+	*(int*)item= *(int*)previousItem + *(int*)item;
+	return (int*)item;
+}
+
+void *reduce(LinkedList list, Reducer reducer, void* hint, void* initialValue){
+	Element *ele = list.head;
+	for(int i=0;i<list.length;i++){
+		initialValue = reducer(hint,initialValue,ele->value);
+		ele = ele->next;
+	}
+	return initialValue;
+}
+
+
 
 
 

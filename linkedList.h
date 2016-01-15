@@ -40,6 +40,23 @@ LinkedList  filter(LinkedList, MatchFunc, void * );
 
 LinkedList reverse(LinkedList);
 
+typedef void ConvertFunc (void *, void *,void *);
+
+void increment1(void* hint, void* sourceItem, void* destinationItem);
+
+LinkedList map(LinkedList, ConvertFunc, void * );
+
+typedef void* Reducer( void* , void*, void*);
+
+void* sum(void* hint, void* previousItem, void* item);
+
+void * reduce(LinkedList, Reducer, void *hint, void *initialValue);
+
+
+
+
+
+
 
 
 
